@@ -57,7 +57,7 @@ export default function Home() {
           onVolumeChange={handleVolumeChange}
         />
 
-        <SponsorsSection />
+
 
         {/* Country Flags Section */}
         <CountriesSection
@@ -78,6 +78,8 @@ export default function Home() {
           />
         </>
       ) : null}
+
+      <SponsorsSection />
       </main>
 
       {/* Footer */}

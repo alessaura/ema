@@ -20,8 +20,8 @@ const CountriesContainer = ({ volume, selectedCountry }: CountriesContainerProps
       letter: "A",
       countryName: "lemanha",
       fullCountryName: "EUROPA",
-      bgImage: "/countries/alemanha-bg.png",
-      letterImage: "/countries/alemanha-letter.png",
+      bgImage: "alemanha",
+      letterImage: "/alemanha.png",
       title: "Precisão alemã em cada embalagem que conta história",
       description: "A Alemanha combina tradição milenar com inovação tecnológica em suas embalagens. Aqui, a engenharia de precisão encontra o design funcional, criando produtos que são referência mundial em qualidade e durabilidade.",
       highlights: [
@@ -44,7 +44,7 @@ const CountriesContainer = ({ volume, selectedCountry }: CountriesContainerProps
       letter: "D",
       countryName: "inamarca",
       fullCountryName: "EUROPA",
-      bgImage: "/countries/dinamarca-bg.png",
+      bgImage: "/dinamarca.png",
       title: "Design hygge que aquece corações ao redor do mundo",
       description: "A Dinamarca é sinônimo de hygge - conceito de aconchego que se reflete em suas embalagens minimalistas e funcionais.",
       highlights: [
@@ -67,7 +67,7 @@ const CountriesContainer = ({ volume, selectedCountry }: CountriesContainerProps
       letter: "E",
       countryName: "spanha",
       fullCountryName: "EUROPA",
-      bgImage: "/countries/espanha-bg.png",
+      bgImage: "/espanha.png",
       title: "Paixão mediterrânea que desperta todos os sentidos",
       description: "Embalagens espanholas refletem a rica cultura mediterrânea com cores vibrantes e design emotivo.",
       highlights: [
@@ -90,7 +90,7 @@ const CountriesContainer = ({ volume, selectedCountry }: CountriesContainerProps
       letter: "F",
       countryName: "rança",
       fullCountryName: "EUROPA",
-      bgImage: "e.png",
+      bgImage: "frança.png",
       title: "Art de vivre francês em cada detalhe refinado",
       description: "A França eleva embalagens ao status de arte. Aqui, cada produto é uma experiência sensorial.",
       highlights: [
@@ -113,7 +113,7 @@ const CountriesContainer = ({ volume, selectedCountry }: CountriesContainerProps
       letter: "h",
       countryName: "olanda",
       fullCountryName: "EUROPA",
-      bgImage: ".png",
+      bgImage: "holanda.png",
       title: "Art de vivre francês em cada detalhe refinado",
       description: "A França eleva embalagens ao status de arte. Aqui, cada produto é uma experiência sensorial.",
       highlights: [
@@ -136,7 +136,7 @@ const CountriesContainer = ({ volume, selectedCountry }: CountriesContainerProps
       letter: "n",
       countryName: "oruega",
       fullCountryName: "EUROPA",
-      bgImage: "e.png",
+      bgImage: "noruega.png",
       title: "Art de vivre francês em cada detalhe refinado",
       description: "A França eleva embalagens ao status de arte. Aqui, cada produto é uma experiência sensorial.",
       highlights: [
@@ -159,7 +159,7 @@ const CountriesContainer = ({ volume, selectedCountry }: CountriesContainerProps
       letter: "s",
       countryName: "uécia",
       fullCountryName: "EUROPA",
-      bgImage: "e.png",
+      bgImage: "suecia.png",
       title: "Art de vivre francês em cada detalhe refinado",
       description: "A França eleva embalagens ao status de arte. Aqui, cada produto é uma experiência sensorial.",
       highlights: [
