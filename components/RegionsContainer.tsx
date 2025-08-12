@@ -18,11 +18,11 @@ const RegionsContainer = () => {
       ],
       insight: "No Sudeste, embalagens não apenas protegem - elas preservam patrimônios culturais reconhecidos oficialmente.",
       productImages: [
-        "/sudeste-queijo.jpg",
-        "/sudeste-granado.jpg", 
-        "/sudeste-cachaca.jpg",
-        "/sudeste-phebo.jpg",
-        "/sudeste-goiaba.jpg"
+        "/sudeste-queijo.png",
+        "/sudeste-granado.png", 
+        "/sudeste-cachaca.png",
+        "/sudeste-giovana.png",
+        "/sudeste-goiaba.png"
       ]
     },
     {
@@ -40,11 +40,10 @@ const RegionsContainer = () => {
       ],
       insight: "No Sul, cada embalagem carrega DNA do tempero brasileiro - tradição que não envelhece, apenas amadurece.",
       productImages: [
-        "/sul-mate.jpg",
-        "/sul-polenta.jpg",
-        "/sul-vinho.jpg", 
-        "/sul-mostarda.jpg",
-        "/sul-biscoito.jpg"
+        "/sul-matte.png",
+        "/sul-polenta.png",
+        "/sul-mostarda.png",
+        "/sul-biscoito.png"
       ]
     },
     {
@@ -62,11 +61,10 @@ const RegionsContainer = () => {
       ],
       insight: "Região com maior potencial inexplorado para cajuína e temperos únicos que o mundo cobiça.",
       productImages: [
-        "/nordeste-bolo.jpg",
-        "/nordeste-cuscuz.jpg",
-        "/nordeste-guarana.jpg",
-        "/nordeste-cajuina.jpg", 
-        "/nordeste-tempero.jpg"
+        "/nordeste-bolo.png",
+        "/nordeste-flocao.png",
+        "/nordeste-caju.png",
+        "/nordeste-granola.png"
       ]
     },
     {
@@ -84,11 +82,10 @@ const RegionsContainer = () => {
       ],
       insight: "Centro-Oeste: única região que pode criar identidade do zero - território livre para inovar sem amarras do passado.",
       productImages: [
-        "/centro-oeste-soja.jpg",
-        "/centro-oeste-erva.jpg",
-        "/centro-oeste-farofa.jpg",
-        "/centro-oeste-coco.jpg",
-        "/centro-oeste-milho.jpg"
+        "/centro-oeste-cuscuz.png",
+        "/centro-oeste-erva.png",
+        "/centro-oeste-farofa.png",
+        "/centro-oeste-milho.png"
       ]
     },
     {
@@ -106,11 +103,10 @@ const RegionsContainer = () => {
       ],
       insight: "Norte é mistério inexplorado: maior biodiversidade com cultura amazônica pouquíssimo aproveitada em design.",
       productImages: [
-        "/norte-acai.jpg",
-        "/norte-chocolate.jpg", 
-        "/norte-guarana.jpg",
-        "/norte-tucupi.jpg",
-        "/norte-cumaru.jpg"
+        "/norte-acai.png",
+        "/norte-farinha.png",
+        "/norte-jambu.png",
+        "/norte-tucupi.png"
       ]
     }
   ];

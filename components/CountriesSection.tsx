@@ -1,4 +1,6 @@
-// components/CountriesSection.tsx
+// components/CountriesSection.tsx (versão atualizada)
+'use client';
+
 import Image from 'next/image';
 
 interface Country {
@@ -7,8 +9,30 @@ interface Country {
   alt: string;
 }
 
-const CountriesSection = () => {
-  const countries: Country[] = [
+interface CountriesSectionProps {
+  selectedVolume: 'volume1' | 'volume2';
+  selectedCountry: string | null;
+  onCountrySelect: (countryCode: string) => void;
+}
+
+const CountriesSection = ({ 
+  selectedVolume, 
+  selectedCountry, 
+  onCountrySelect 
+}: CountriesSectionProps) => {
+  
+  const volume1Countries: Country[] = [
+    { code: "br", name: "Brasil", alt: "Brazil flag" },
+    { code: "de", name: "Alemanha", alt: "Germany flag" },
+    { code: "dk", name: "Dinamarca", alt: "Denmark flag" },
+    { code: "es", name: "Espanha", alt: "Spain flag" },
+    { code: "fr", name: "França", alt: "France flag" },
+    { code: "nl", name: "Holanda", alt: "Netherlands flag" },
+    { code: "no", name: "Noruega", alt: "Norway flag" },
+    { code: "se", name: "Suécia", alt: "Sweden flag" }
+  ];
+
+  const volume2Countries: Country[] = [
     { code: "br", name: "Brasil", alt: "Brazil flag" },
     { code: "be", name: "Bélgica", alt: "Belgium flag" },
     { code: "gb-sct", name: "Escócia", alt: "Scotland flag" },
@@ -19,13 +43,30 @@ const CountriesSection = () => {
     { code: "it", name: "Itália", alt: "Italy flag" }
   ];
 
+  const countries = selectedVolume === 'volume1' ? volume1Countries : volume2Countries;
+
   return (
     <section className="container mx-auto px-6 py-16 md:px-12 lg:px-20">
+      {/* Title indicating current volume */}
+      <div className="text-center mb-8">
+        <h3 className="text-2xl font-semibold text-gray-800 mb-2">
+          {selectedVolume === 'volume1' ? 'Países do Volume 1' : 'Países do Volume 2'}
+        </h3>
+        <p className="text-gray-600">
+          Clique em um país para explorar suas embalagens e tradições
+        </p>
+      </div>
+
       <div className="flex flex-wrap items-center justify-center gap-3">
         {countries.map((country) => (
           <div
             key={country.name}
-            className="flex items-center space-x-3 bg-white px-5 py-2 border border-[#ECECEC] shadow-sm transition-all duration-300 hover:bg-gray-50 hover:scale-105 hover:shadow-md group"
+            onClick={() => onCountrySelect(country.code)}
+            className={`flex items-center space-x-3 px-5 py-2 border shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-md group cursor-pointer ${
+              selectedCountry === country.code
+                ? 'bg-primary text-white border-primary'
+                : 'bg-white border-[#ECECEC] hover:bg-gray-50'
+            }`}
             style={{ borderRadius: '4px' }}
           >
             <Image 
@@ -35,12 +76,33 @@ const CountriesSection = () => {
               alt={country.alt}
               className="transition-transform duration-300 group-hover:scale-110"
             />
-            <span className="text-base font-medium text-gray-700 transition-colors duration-300 group-hover:text-gray-900">
+            <span className={`text-base font-medium transition-colors duration-300 ${
+              selectedCountry === country.code
+                ? 'text-white'
+                : 'text-gray-700 group-hover:text-gray-900'
+            }`}>
               {country.name}
             </span>
+            
+            {/* Indicator for selected country */}
+            {selectedCountry === country.code && (
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+            )}
           </div>
         ))}
       </div>
+
+      {/* Clear selection button */}
+      {selectedCountry && (
+        <div className="text-center mt-6">
+          <button
+            onClick={() => onCountrySelect('')}
+            className="text-gray-500 hover:text-gray-700 transition-colors duration-200 text-sm underline"
+          >
+            Limpar seleção
+          </button>
+        </div>
+      )}
     </section>
   );
 };

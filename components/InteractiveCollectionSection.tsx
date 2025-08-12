@@ -1,7 +1,6 @@
-// components/InteractiveCollectionSection.tsx (versão simples, sem Context)
+// components/InteractiveCollectionSection.tsx (versão atualizada)
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Card } from '@/components/ui/card';
@@ -14,8 +13,15 @@ interface VolumeData {
   mockupImage: string;
 }
 
-const InteractiveCollectionSection = () => {
-  const [selectedVolume, setSelectedVolume] = useState<'volume1' | 'volume2'>('volume2');
+interface InteractiveCollectionSectionProps {
+  selectedVolume: 'volume1' | 'volume2';
+  onVolumeChange: (volume: 'volume1' | 'volume2') => void;
+}
+
+const InteractiveCollectionSection = ({ 
+  selectedVolume, 
+  onVolumeChange 
+}: InteractiveCollectionSectionProps) => {
 
   const volumesData: Record<string, VolumeData> = {
     volume1: {
@@ -35,7 +41,7 @@ const InteractiveCollectionSection = () => {
   };
 
   const handleVolumeChange = (volumeId: 'volume1' | 'volume2') => {
-    setSelectedVolume(volumeId);
+    onVolumeChange(volumeId);
   };
 
   const currentVolume = volumesData[selectedVolume];

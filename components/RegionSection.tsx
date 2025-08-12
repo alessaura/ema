@@ -9,17 +9,17 @@ const msMadi = Ms_Madi({ subsets: ["latin"], weight: "400" });
 const montserratBlk = Montserrat({ subsets: ["latin"], weight: "900", style: "italic" });
 
 interface RegionData {
-  id: string;
-  letter: string;            // Ex.: "S"
-  regionName: string;        // Ex.: "udeste"
-  bgImage: string;           // Fallback caso não exista letterImage
-  letterImage?: string;      // PNG da letra (ex.: "/sudeste.png")
+  id: string;                 // Ex.: "sudeste"
+  letter: string;             // Ex.: "S"
+  regionName: string;         // Ex.: "udeste"
+  bgImage: string;            // Fallback caso não exista letterImage
+  letterImage?: string;       // PNG da letra (ex.: "/sudeste.png")
   title: string;
   description: string;
-  highlights: string[];      // "Título:Descrição"
+  highlights: string[];       // "Título:Descrição"
   insight: string;
   productImages: string[];
-  reverse?: boolean;         // (ignorado no layout novo; mantido p/ compatibilidade)
+  reverse?: boolean;          // Mantido por compatibilidade (não usado no layout novo)
 }
 
 interface RegionSectionProps {
@@ -33,7 +33,7 @@ const OutlineOutside = ({
   className,
   fill = "#0F172A",
   stroke = "#FFFFFF",
-  strokeWidth = 2,
+  strokeWidth = 3, // MAIS GROSSO conforme pedido
   style,
 }: {
   children: ReactNode;
@@ -100,7 +100,7 @@ const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
         <div className="grid items-start gap-12 md:grid-cols-2 md:gap-16">
           {/* ESQUERDA — header visual + textos */}
           <div>
-            {/* Header: Letra 200x200 + nome colado + BRASIL */}
+            {/* Header: Letra 200x200 + nome colado + BRASIL (com fill) */}
             <div className="flex items-end">
               <div className="relative w-[200px] h-[200px] shrink-0">
                 <Image
@@ -113,22 +113,23 @@ const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
               </div>
 
               <div className="-ml-3 -translate-x-1">
+                {/* “udeste/…” com contorno mais grosso */}
                 <OutlineOutside
                   className={msMadi.className}
                   stroke="#FFFFFF"
-                  strokeWidth={2} // ajuste fino: 1.5 ~ 2.5
+                  strokeWidth={3}
                   fill="#0F172A"
                   style={{ fontSize: "clamp(56px, 9vw, 96px)" }}
                 >
                   {region.regionName}
                 </OutlineOutside>
 
+                {/* BRASIL com preenchimento sólido (sem stroke) */}
                 <div
                   className={`${montserratBlk.className} italic tracking-wider mt-1`}
                   style={{
                     fontSize: "clamp(28px, 5vw, 48px)",
-                    WebkitTextStroke: "0.5px #221F46",
-                    WebkitTextFillColor: "transparent",
+                    color: "#221F46",
                   }}
                 >
                   BRASIL
