@@ -2,9 +2,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, type ReactNode, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
 import { Button } from "@/components/ui/button";
 import { Ms_Madi, Montserrat } from "next/font/google";
+import AcquisitionModal from "./AcquisitionModal";
 
 const msMadi = Ms_Madi({ subsets: ["latin"], weight: "400" });
 const montserratBlk = Montserrat({ subsets: ["latin"], weight: "900", style: "italic" });
@@ -74,6 +75,8 @@ const CountrySection = ({ country, index = 0 }: CountrySectionProps) => {
       </div>
     );
   }
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const letterSrc = country.letterImage ?? country.bgImage;
 
@@ -165,6 +168,7 @@ const CountrySection = ({ country, index = 0 }: CountrySectionProps) => {
             </div>
 
             <Button
+              onClick={() => setIsModalOpen(true)}
               className="mt-8 px-8 py-6 text-lg rounded-xl shadow-lg transition-all duration-300 hover:brightness-95"
               style={{ backgroundColor: "#4F8671" }}
             >
@@ -226,6 +230,11 @@ const CountrySection = ({ country, index = 0 }: CountrySectionProps) => {
           </div>
         </div>
       </div>
+
+      <AcquisitionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </section>
   );
 };

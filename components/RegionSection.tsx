@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, type ReactNode, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
 import { Button } from "@/components/ui/button";
 import { Ms_Madi, Montserrat } from "next/font/google";
+import AcquisitionModal from "./AcquisitionModal";
 
 const msMadi = Ms_Madi({ subsets: ["latin"], weight: "400" });
 const montserratBlk = Montserrat({ subsets: ["latin"], weight: "900", style: "italic" });
@@ -27,7 +28,7 @@ interface RegionSectionProps {
   index?: number;
 }
 
-/** Stroke externo real (sem “comer” o preenchimento) via duas camadas */
+/** Stroke externo real (sem "comer" o preenchimento) via duas camadas */
 const OutlineOutside = ({
   children,
   className,
@@ -64,6 +65,8 @@ const OutlineOutside = ({
 );
 
 const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const letterSrc = region.letterImage ?? region.bgImage;
 
   // Galeria (scroll + setas + autoplay leve)
@@ -113,7 +116,7 @@ const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
               </div>
 
               <div className="-ml-3 -translate-x-1">
-                {/* “udeste/…” com contorno mais grosso */}
+                {/* "udeste/…" com contorno mais grosso */}
                 <OutlineOutside
                   className={msMadi.className}
                   stroke="#FFFFFF"
@@ -139,7 +142,7 @@ const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
 
             {/* Título */}
             <h3 className="mt-6 text-2xl md:text-3xl font-bold leading-tight text-gray-900">
-              “{region.title}”
+              "{region.title}"
             </h3>
 
             {/* Descrição */}
@@ -163,6 +166,7 @@ const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
 
             {/* CTA */}
             <Button
+              onClick={() => setIsModalOpen(true)}
               className="mt-8 px-8 py-6 text-lg rounded-xl shadow-lg transition-all duration-300 hover:brightness-95"
               style={{ backgroundColor: "#4F8671" }}
             >
@@ -227,6 +231,11 @@ const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
           </div>
         </div>
       </div>
+
+      <AcquisitionModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </section>
   );
 };
