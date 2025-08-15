@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from 
 import { Button } from "@/components/ui/button";
 import { Ms_Madi, Montserrat } from "next/font/google";
 import AcquisitionModal from "./AcquisitionModal";
+import { useLanguage } from '@/app/context/LanguageContext';
 
 const msMadi = Ms_Madi({ subsets: ["latin"], weight: "400" });
 const montserratBlk = Montserrat({ subsets: ["latin"], weight: "900", style: "italic" });
@@ -64,6 +65,8 @@ const OutlineOutside = ({
 );
 
 const CountrySection = ({ country, index = 0 }: CountrySectionProps) => {
+  const { t } = useLanguage();
+
   // Proteção contra undefined
   if (!country) {
     console.error('CountrySection: country prop is undefined');
@@ -138,7 +141,7 @@ const CountrySection = ({ country, index = 0 }: CountrySectionProps) => {
           {/* Coluna 1: Destaques culturais */}
           <div className="lg:col-span-1">
             <h4 className="text-xl font-semibold text-gray-900 mb-6 border-b-2 border-primary/20 pb-2">
-              Destaques Culturais
+              {t('details.cultural.highlights')}
             </h4>
             <div className="space-y-4">
               {country.highlights.map((h, i) => {
@@ -163,14 +166,14 @@ const CountrySection = ({ country, index = 0 }: CountrySectionProps) => {
               className="mt-8 w-full px-6 py-4 text-base rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
               style={{ backgroundColor: "#4F8671" }}
             >
-              Adquirir Material
+              {t('details.acquire')}
             </Button>
           </div>
 
           {/* Coluna 2-3: Galeria elegante */}
           <div className="lg:col-span-2">
             <h4 className="text-xl font-semibold text-gray-900 mb-6 border-b-2 border-primary/20 pb-2">
-              Produtos & Tradições
+              {t('details.products')}
             </h4>
             
             {/* Imagem principal */}
@@ -219,7 +222,7 @@ const CountrySection = ({ country, index = 0 }: CountrySectionProps) => {
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
                   <span className="text-primary text-xl">💡</span>
                 </div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Insight Cultural</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">{t('details.cultural.insight')}</h4>
                 <p className="text-lg leading-relaxed text-gray-800 italic font-medium">
                   "{country.insight}"
                 </p>
