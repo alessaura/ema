@@ -13,12 +13,14 @@ interface CountriesSectionProps {
   selectedVolume: 'volume1' | 'volume2';
   selectedCountry: string | null;
   onCountrySelect: (countryCode: string) => void;
+  onVolumeChange: (volume: 'volume1' | 'volume2') => void;
 }
 
-const CountriesSection = ({ 
-  selectedVolume, 
-  selectedCountry, 
-  onCountrySelect 
+const CountriesSection = ({
+  selectedVolume,
+  selectedCountry,
+  onCountrySelect,
+  onVolumeChange
 }: CountriesSectionProps) => {
   
   const volume1Countries: Country[] = [
@@ -47,11 +49,42 @@ const CountriesSection = ({
 
   return (
     <section className="container mx-auto px-6 py-16 md:px-12 lg:px-20">
-      {/* Title indicating current volume */}
+      {/* Title with volume tabs */}
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-          {selectedVolume === 'volume1' ? 'Países do Volume 1' : 'Países do Volume 2'}
-        </h3>
+        <h3 className="text-2xl font-semibold text-gray-800 mb-4">Países por Volume</h3>
+
+        {/* Volume Tabs */}
+        <div className="flex justify-center mb-6">
+          <div className="flex border-b border-gray-200">
+            <button
+              onClick={() => onVolumeChange('volume1')}
+              className={`relative px-6 py-3 text-lg font-medium transition-all duration-300 ${
+                selectedVolume === 'volume1'
+                  ? 'text-primary border-b-2 border-primary'
+                  : 'text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-300'
+              }`}
+            >
+              Volume 1
+              {selectedVolume === 'volume1' && (
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-pulse"></div>
+              )}
+            </button>
+            <button
+              onClick={() => onVolumeChange('volume2')}
+              className={`relative px-6 py-3 text-lg font-medium transition-all duration-300 ${
+                selectedVolume === 'volume2'
+                  ? 'text-primary border-b-2 border-primary'
+                  : 'text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-300'
+              }`}
+            >
+              Volume 2
+              {selectedVolume === 'volume2' && (
+                <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-pulse"></div>
+              )}
+            </button>
+          </div>
+        </div>
+
         <p className="text-gray-600">
           Clique em um país para explorar suas embalagens e tradições
         </p>
