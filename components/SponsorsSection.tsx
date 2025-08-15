@@ -2,6 +2,7 @@
 'use client';
 
 import Image from 'next/image';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 interface LogoItem {
   src: string;
@@ -15,6 +16,7 @@ interface SponsorsSectionProps {
 }
 
 const SponsorsSection = ({ selectedVolume }: SponsorsSectionProps) => {
+  const { t } = useLanguage();
   // Patrocinadores por volume
   const volume1Sponsors: LogoItem[] = [
     { src: "/o-i.png", width: 140, height: 70, alt: "O1 logo" },
@@ -43,12 +45,12 @@ const SponsorsSection = ({ selectedVolume }: SponsorsSectionProps) => {
       {/* Partners Section */}
       <section className="container mx-auto px-6 py-16 text-center md:px-12 lg:px-20">
         <h3 className="mb-4 inline-block rounded-full bg-accent px-8 py-3 text-base font-semibold uppercase tracking-wide text-gray-700 transition-all duration-300 hover:bg-primary hover:text-white">
-          Patrocinadores
+          {t('sponsors.title')}
         </h3>
         
         {/* Volume indicator */}
         <p className="text-sm text-gray-500 mb-8">
-          {selectedVolume === 'volume1' ? 'Volume 1' : 'Volume 2'}
+          {t('volume')} {selectedVolume === 'volume1' ? '1' : '2'}
         </p>
         
         <div 
@@ -75,7 +77,7 @@ const SponsorsSection = ({ selectedVolume }: SponsorsSectionProps) => {
       {/* Realization Section */}
       <section className="container mx-auto px-6 py-16 text-center md:px-12 lg:px-20">
         <h3 className="mb-10 inline-block rounded-full bg-accent px-8 py-3 text-base font-semibold uppercase tracking-wide text-gray-700 transition-all duration-300 hover:bg-primary hover:text-white">
-          Realização | Realization
+          {t('sponsors.realization')}
         </h3>
         <div className="flex flex-wrap items-center justify-center gap-12">
           {realization.map((org, index) => (
