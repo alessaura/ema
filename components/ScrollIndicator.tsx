@@ -33,7 +33,7 @@ export default function ScrollIndicator() {
         </div>
         
         {/* Texto */}
-        <span className="text-sm font-medium text-gray-500">Role para baixo</span>
+        <span className="text-sm font-medium text-gray-500">{t('scroll.text')}</span>
         
         {/* Seta para baixo */}
         <svg 
