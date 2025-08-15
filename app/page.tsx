@@ -66,6 +66,7 @@ export default function Home() {
           selectedVolume={appState.selectedVolume}
           selectedCountry={appState.selectedCountry}
           onCountrySelect={handleCountrySelect}
+          onVolumeChange={handleVolumeChange}
         />
 
         {/* Content based on selection */}
@@ -81,7 +82,7 @@ export default function Home() {
         </>
       ) : null}
 
-      <SponsorsSection />
+      <SponsorsSection selectedVolume={appState.selectedVolume} />
       </main>
 
       {/* Footer */}
