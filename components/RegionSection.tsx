@@ -5,6 +5,7 @@ import { useState, type ReactNode, type CSSProperties } from "react";
 import { Button } from "@/components/ui/button";
 import { Ms_Madi, Montserrat } from "next/font/google";
 import AcquisitionModal from "./AcquisitionModal";
+import { useLanguage } from '@/app/context/LanguageContext';
 
 const msMadi = Ms_Madi({ subsets: ["latin"], weight: "400" });
 const montserratBlk = Montserrat({ subsets: ["latin"], weight: "900", style: "italic" });
@@ -61,6 +62,7 @@ const OutlineOutside = ({
 );
 
 const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
+  const { t } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
@@ -123,7 +125,7 @@ const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
           {/* Coluna 1: Destaques culturais */}
           <div className="lg:col-span-1">
             <h4 className="text-xl font-semibold text-gray-900 mb-6 border-b-2 border-primary/20 pb-2">
-              Destaques Regionais
+              {t('details.regional.highlights')}
             </h4>
             <div className="space-y-4">
               {region.highlights.map((h, i) => {
@@ -148,14 +150,14 @@ const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
               className="mt-8 w-full px-6 py-4 text-base rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl"
               style={{ backgroundColor: "#4F8671" }}
             >
-              Adquirir Material
+              {t('details.acquire')}
             </Button>
           </div>
 
           {/* Coluna 2-3: Galeria elegante */}
           <div className="lg:col-span-2">
             <h4 className="text-xl font-semibold text-gray-900 mb-6 border-b-2 border-primary/20 pb-2">
-              Produtos & Tradições Regionais
+              {t('details.products.regional')}
             </h4>
             
             {/* Imagem principal */}
@@ -204,7 +206,7 @@ const RegionSection = ({ region, index = 0 }: RegionSectionProps) => {
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
                   <span className="text-primary text-xl">🇧🇷</span>
                 </div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Insight Regional</h4>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">{t('details.regional.insight')}</h4>
                 <p className="text-lg leading-relaxed text-gray-800 italic font-medium">
                   "{region.insight}"
                 </p>
