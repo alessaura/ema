@@ -86,6 +86,9 @@ export default function Home() {
 
       {/* Footer */}
       <Footer> </Footer>
+
+      {/* Scroll Indicator */}
+      <ScrollIndicator />
     </div>
   );
 }
