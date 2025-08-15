@@ -23,6 +23,7 @@ const CountriesSection = ({
   onCountrySelect,
   onVolumeChange
 }: CountriesSectionProps) => {
+  const { t } = useLanguage();
   
   const volume1Countries: Country[] = [
     { code: "br", name: "Brasil", alt: "Brazil flag" },
@@ -52,7 +53,7 @@ const CountriesSection = ({
     <section className="container mx-auto px-6 py-16 md:px-12 lg:px-20">
       {/* Title with volume tabs */}
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-semibold text-gray-800 mb-4">Países por Volume</h3>
+        <h3 className="text-2xl font-semibold text-gray-800 mb-4">{t('countries.title')}</h3>
 
         {/* Volume Tabs */}
         <div className="flex justify-center mb-6">
@@ -65,7 +66,7 @@ const CountriesSection = ({
                   : 'text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-300'
               }`}
             >
-              Volume 1
+              {t('countries.volume1')}
               {selectedVolume === 'volume1' && (
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-pulse"></div>
               )}
@@ -78,7 +79,7 @@ const CountriesSection = ({
                   : 'text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-300'
               }`}
             >
-              Volume 2
+              {t('countries.volume2')}
               {selectedVolume === 'volume2' && (
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-pulse"></div>
               )}
@@ -87,7 +88,7 @@ const CountriesSection = ({
         </div>
 
         <p className="text-gray-600">
-          Clique em um país para explorar suas embalagens e tradições
+          {t('countries.subtitle')}
         </p>
       </div>
 
@@ -133,7 +134,7 @@ const CountriesSection = ({
             onClick={() => onCountrySelect('')}
             className="text-gray-500 hover:text-gray-700 transition-colors duration-200 text-sm underline"
           >
-            Limpar seleção
+            {t('countries.clear')}
           </button>
         </div>
       )}
