@@ -2,7 +2,6 @@
 'use client';
 
 import Image from 'next/image';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Card } from '@/components/ui/card';
 
 interface VolumeData {
@@ -71,37 +70,37 @@ const InteractiveCollectionSection = ({
               </p>
             </div>
 
-            {/* Volume Selection and Logo */}
+            {/* Volume Selection Tabs and Logo */}
             <div className="flex items-start justify-between gap-8">
-              <div className="flex flex-col space-y-4 flex-1">
-                <div className="flex items-center space-x-3 group">
-                  <Checkbox
-                    id="book1"
-                    checked={selectedVolume === 'volume1'}
-                    onCheckedChange={() => handleVolumeChange('volume1')}
-                    className="border-primary text-primary data-[state=checked]:bg-primary data-[state=checked]:text-white transition-all duration-300 group-hover:scale-110"
-                  />
-                  <label
-                    htmlFor="book1"
-                    className="text-lg font-medium leading-none text-gray-700 cursor-pointer transition-all duration-300 group-hover:text-primary"
+              <div className="flex flex-col space-y-6 flex-1">
+                {/* Tabs */}
+                <div className="flex border-b border-gray-200">
+                  <button
+                    onClick={() => handleVolumeChange('volume1')}
+                    className={`relative px-6 py-3 text-lg font-medium transition-all duration-300 ${
+                      selectedVolume === 'volume1'
+                        ? 'text-primary border-b-2 border-primary'
+                        : 'text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-300'
+                    }`}
                   >
                     Embalagens Mundo Afora 1
-                  </label>
-                </div>
-
-                <div className="flex items-center space-x-3 group">
-                  <Checkbox
-                    id="book2"
-                    checked={selectedVolume === 'volume2'}
-                    onCheckedChange={() => handleVolumeChange('volume2')}
-                    className="border-primary text-primary data-[state=checked]:bg-primary data-[state=checked]:text-white transition-all duration-300 group-hover:scale-110"
-                  />
-                  <label
-                    htmlFor="book2"
-                    className="text-lg font-medium leading-none text-gray-700 cursor-pointer transition-all duration-300 group-hover:text-primary"
+                    {selectedVolume === 'volume1' && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-pulse"></div>
+                    )}
+                  </button>
+                  <button
+                    onClick={() => handleVolumeChange('volume2')}
+                    className={`relative px-6 py-3 text-lg font-medium transition-all duration-300 ${
+                      selectedVolume === 'volume2'
+                        ? 'text-primary border-b-2 border-primary'
+                        : 'text-gray-600 hover:text-gray-900 hover:border-b-2 hover:border-gray-300'
+                    }`}
                   >
                     Embalagens Mundo Afora 2
-                  </label>
+                    {selectedVolume === 'volume2' && (
+                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary animate-pulse"></div>
+                    )}
+                  </button>
                 </div>
               </div>
 
