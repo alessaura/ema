@@ -14,6 +14,7 @@ import CountriesSection from "@/components/CountriesSection";
 import RegionsContainer from '@/components/RegionsContainer';
 import CountriesContainer from '@/components/CountriesContainer';
 import Footer  from '@/components/Footer';
+import ScrollIndicator from '@/components/ScrollIndicator';
 
 interface AppState {
   selectedVolume: 'volume1' | 'volume2';
