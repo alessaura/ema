@@ -3,26 +3,29 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '@/app/context/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 interface HeaderProps {
   className?: string;
 }
 
 interface NavItem {
-  label: string;
+  labelKey: string;
   href: string;
 }
 
 const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const navItems: NavItem[] = [
-    { label: 'Início', href: '#' },
-    { label: 'Sobre a coleção', href: '#' },
-    { label: 'A coleção', href: '#' },
-    { label: 'Patrocinadores da Coleção', href: '#' },
-    { label: 'Como adquirir', href: '#' },
-    { label: 'Contato', href: '#' },
+    { labelKey: 'header.home', href: '#' },
+    { labelKey: 'header.about', href: '#' },
+    { labelKey: 'header.collection', href: '#' },
+    { labelKey: 'header.sponsors', href: '#' },
+    { labelKey: 'header.acquire', href: '#' },
+    { labelKey: 'header.contact', href: '#' },
   ];
 
   const toggleMenu = () => {
@@ -45,73 +48,82 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           <nav className="hidden lg:flex space-x-8 text-base font-medium text-gray-700">
             {navItems.map((item) => (
               <Link 
-                key={item.label}
+                key={item.labelKey}
                 href={item.href} 
                 className="hover:text-emerald-600 transition-colors duration-300 relative group"
               >
-                {item.label}
+                {t(item.labelKey)}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-600 transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={toggleMenu}
-            className="lg:hidden relative z-10 p-2 text-gray-700 hover:text-emerald-600 transition-colors duration-300"
-            aria-label="Toggle menu"
-          >
-            <div className="w-6 h-6 flex flex-col justify-center items-center">
-              <span 
-                className={`block w-6 h-0.5 bg-current transition-all duration-300 ${
-                  isMenuOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-1'
-                }`}
-              ></span>
-              <span 
-                className={`block w-6 h-0.5 bg-current transition-all duration-300 ${
-                  isMenuOpen ? 'opacity-0' : 'opacity-100'
-                }`}
-              ></span>
-              <span 
-                className={`block w-6 h-0.5 bg-current transition-all duration-300 ${
-                  isMenuOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-1'
-                }`}
-              ></span>
-            </div>
-          </button>
+          {/* Mobile Menu Button + Language Selector */}
+          <div className="flex items-center space-x-3 lg:hidden">
+            <LanguageSelector />
+            <button
+              onClick={toggleMenu}
+              className="relative z-10 p-2 text-gray-700 hover:text-emerald-600 transition-colors duration-300"
+              aria-label="Toggle menu"
+            >
+              <div className="w-6 h-6 flex flex-col justify-center items-center">
+                <span 
+                  className={`block w-6 h-0.5 bg-current transition-all duration-300 ${
+                    isMenuOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-1'
+                  }`}
+                ></span>
+                <span 
+                  className={`block w-6 h-0.5 bg-current transition-all duration-300 ${
+                    isMenuOpen ? 'opacity-0' : 'opacity-100'
+                  }`}
+                ></span>
+                <span 
+                  className={`block w-6 h-0.5 bg-current transition-all duration-300 ${
+                    isMenuOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-1'
+                  }`}
+                ></span>
+              </div>
+            </button>
+          </div>
 
-          {/* Logos */}
+          {/* Logos + Desktop Language Selector */}
           <div className="flex items-center space-x-4">
-            <div className="hidden sm:flex items-center space-x-3">
-              <Image
-                src="/ema-logo.svg"
-                alt="Embalagens Mundo Afora"
-                width={200}
-                height={40}
-                className="h-8 w-auto object-contain"
-                priority
-              />
-              <div className="w-px h-6 bg-gray-300 hidden md:block"></div>
-              <Image
-                src="/packaging-logo.svg"
-                alt="Packaging Around The World"
-                width={200}
-                height={40}
-                className="h-8 w-auto object-contain"
-                priority
-              />
+            <div className="hidden lg:block">
+              <LanguageSelector />
             </div>
             
-            {/* Mobile: Show only one logo */}
-            <div className="sm:hidden">
-              <Image
-                src="/ema-logo.png"
-                alt="Embalagens Mundo Afora"
-                width={150}
-                height={30}
-                className="h-6 w-auto object-contain"
-                priority
-              />
+            <div className="flex items-center space-x-4">
+              <div className="hidden sm:flex items-center space-x-3">
+                <Image
+                  src="/ema-logo.svg"
+                  alt="Embalagens Mundo Afora"
+                  width={200}
+                  height={40}
+                  className="h-8 w-auto object-contain"
+                  priority
+                />
+                <div className="w-px h-6 bg-gray-300 hidden md:block"></div>
+                <Image
+                  src="/packaging-logo.svg"
+                  alt="Packaging Around The World"
+                  width={200}
+                  height={40}
+                  className="h-8 w-auto object-contain"
+                  priority
+                />
+              </div>
+              
+              {/* Mobile: Show only one logo */}
+              <div className="sm:hidden">
+                <Image
+                  src="/ema-logo.png"
+                  alt="Embalagens Mundo Afora"
+                  width={150}
+                  height={30}
+                  className="h-6 w-auto object-contain"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -135,12 +147,12 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             <nav className="space-y-6">
               {navItems.map((item) => (
                 <Link
-                  key={item.label}
+                  key={item.labelKey}
                   href={item.href}
                   onClick={closeMenu}
                   className="block text-lg font-medium text-gray-700 hover:text-emerald-600 transition-colors duration-300 py-2"
                 >
-                  {item.label}
+                  {t(item.labelKey)}
                 </Link>
               ))}
             </nav>
