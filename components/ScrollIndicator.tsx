@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 export default function ScrollIndicator() {
   const [isVisible, setIsVisible] = useState(true);
